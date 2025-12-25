@@ -17,42 +17,57 @@
             margin-left: auto;
             margin-right: auto;
             padding: 15px;
-            margin-top: 35vh;
+            margin-top: 32vh;
         }
         h1 {
             margin: 0px 0px 10px 0px;
         }
-        .input-song-names {
+        #song-name {
             width: 250px;
             height: 25px;
             border: 22px;
             border-color: white;
             border-radius: 5px;
-            margin-bottom: 10px;
         }
         #app button {
             height: 25px;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: 600;
         }
+        #song-names {
+            margin: 0px;
+            padding-left: 20px;
+        }
+        #randomize_button {
+            margin-top: 10px
+        }
     </style>
 </head>
 <body>
     <div id="app">
         <h1>Playlist Randomizer</h1>
-        <div id="song-names">
-            <input type="text" class="input-song-names" id="song-name-1" placeholder="Type the name of song here...">
-        </div>
-        <button onclick="add_input()" id="add_name_button">Add +</button>
+            <input type="text" id="song-name" placeholder="Type the name of song here...">
+        <button onclick="add_name()" id="add_name_button">Add +</button>
+        <button onclick="clear()" id="clear_button">Clear</button>
+        <ul id="song-names">
+
+        </ul>
         <button onclick="randomize()" id="randomize_button">Randomize !</button>
     </div>
     <script>
-        var input_qtd = 1
-        function add_input() {
-            input_qtd += 1
-            var input_area = document.getElementById("song-names")
-            input_area.innerHTML += `<input type="text" class="input-song-names" id="song-name-${input_qtd}" placeholder="Type the name of song here...">`
-            console.log(input_qtd)
+        var song_qtd = 0
+        const songs = []
+        function add_name() {
+            song_qtd += 1  
+            var song_name = document.getElementById("song-name").value
+            var song_area = document.getElementById("song-names")
+            songs.push(song_name)
+            song_area.insertAdjacentHTML('beforeend', ` <li class="name-of-song">${song_name}</li>`)
+            console.log(songs)
+        }
+        function clear() {
+            document.getElementById("song-name").value = " "
+            document.getElementById("song-names").innerHTML = " "
         }
     </script>
 </body>
