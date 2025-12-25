@@ -26,28 +26,47 @@
         #song-name {
             width: 250px;
             height: 25px;
-            border: 22px;
+            border: 2px;
             border-color: white;
             border-radius: 5px;
+            padding: 5px;
         }
         #app button {
-            height: 25px;
+            height: 30px;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            padding: 0 15px;
         }
         #song-names {
-            margin: 0px;
+            margin: 10px 0;
             padding-left: 20px;
         }
         #randomize_button {
-            margin-top: 10px
+            margin-top: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #randomize_button:hover {
+            background-color: #45a049;
+        }
+        #add_name_button {
+            background-color: #2196F3;
+            color: white;
+        }
+        #clear_button {
+            background-color: #f44336;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div id="app">
         <h1>Playlist Randomizer</h1>
-            <input type="text" id="song-name" placeholder="Type the name of song here...">
+        <input type="text" id="song-name" placeholder="Type the name of song here...">
         <button onclick="add_name()" id="add_name_button">Add +</button>
         <button onclick="clearList()" id="clear_button">Clear</button>
         <ul id="song-names">
@@ -57,30 +76,46 @@
     </div>
     <script>
         const songs = []
+        
         function add_name() {
             var song_name = document.getElementById("song-name").value
             var song_area = document.getElementById("song-names")
             if (song_name !== "") {
                 songs.push(song_name)
                 song_area.insertAdjacentHTML('beforeend', ` <li class="name-of-song">${song_name}</li>`)
+                document.getElementById("song-name").value = ""
             }
-            console.log(songs)
         }
+        
         function clearList() {
             document.getElementById("song-name").value = ""
             document.getElementById("song-names").innerHTML = ""
             songs.length = 0
         }
+        
         function randomize() {
             var currentIndex = songs.length
             while (currentIndex != 0) {
                 let randomIndex = Math.floor(Math.random() * currentIndex)
                 currentIndex--
                 [songs[currentIndex], songs[randomIndex]] = [
-      songs[randomIndex], songs[currentIndex]];
+                    songs[randomIndex], songs[currentIndex]]
             }
-            console.log(songs)
+            
+            // Update the display with randomized order
+            var song_area = document.getElementById("song-names")
+            song_area.innerHTML = ""
+            songs.forEach(song => {
+                song_area.insertAdjacentHTML('beforeend', ` <li class="name-of-song">${song}</li>`)
+            })
         }
+        
+        // Allow Enter key to add songs
+        document.getElementById("song-name").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                add_name()
+            }
+        })
     </script>
 </body>
 </html>
