@@ -48,7 +48,7 @@
         <h1>Playlist Randomizer</h1>
             <input type="text" id="song-name" placeholder="Type the name of song here...">
         <button onclick="add_name()" id="add_name_button">Add +</button>
-        <button onclick="clear()" id="clear_button">Clear</button>
+        <button onclick="clearList()" id="clear_button">Clear</button>
         <ul id="song-names">
 
         </ul>
@@ -61,13 +61,15 @@
             song_qtd += 1  
             var song_name = document.getElementById("song-name").value
             var song_area = document.getElementById("song-names")
-            songs.push(song_name)
-            song_area.insertAdjacentHTML('beforeend', ` <li class="name-of-song">${song_name}</li>`)
+            if (song_name !== "") {
+                songs.push(song_name)
+                song_area.insertAdjacentHTML('beforeend', ` <li class="name-of-song">${song_name}</li>`)
+            }
             console.log(songs)
         }
-        function clear() {
-            document.getElementById("song-name").value = " "
-            document.getElementById("song-names").innerHTML = " "
+        function clearList() {
+            document.getElementById("song-name").value = ""
+            document.getElementById("song-names").innerHTML = ""
         }
     </script>
 </body>
