@@ -46,6 +46,9 @@
         <div class="section" id="open-section">
             <h2 class="section-title">You can open two packs now.</h2>
             <button onclick="open_pack()" id="open-button">Open</button>
+            <ol id="pokemon-list">
+                
+            </ol>
         </div>
         <div class="section" id="cards-section">
             <h2 class="section-title">Your cards</h2>
@@ -54,5 +57,73 @@
     <div id="footer">
         <p>by benjamin constant, january 2026</p>
     </div>
+    <script>
+        var common = ["Pidgey", "Rattata", "Caterpie", "Weedle", "Sentret", "Zigzagoon", "Bidoof", "Patrat", "Lillipup", "Hoppip"]
+        var uncommon = ["Growlithe", "Machop"]
+        var chances = []
+        var cards = []
+        function getCards () {
+             for(var i = 0; i < 6; i++) {
+                chances.push(Math.floor(Math.random() * 101))
+             }
+        }
+        function open_pack() {
+            var pokemon_list = document.getElementById("pokemon-list")
+            pokemon_list.innerHTML = ""
+            getCards();
+            console.log(chances)
+            for(var i = 0; i < 6; i++) {
+                if (chances[i] >= 1 && chances[i] < 8) {
+                    cards.push(common[0])
+                }
+                else if (chances[i] >= 8 && chances[i] < 15) {
+                    cards.push(common[1])
+                }
+                else if (chances[i] >= 15 && chances[i] < 22) {
+                    cards.push(common[2])
+                }
+                else if (chances[i] >= 22 && chances[i] < 29) {
+                    cards.push(common[3])
+                }
+                else if (chances[i] >= 29 && chances[i] < 36) {
+                    cards.push(common[4])
+                }
+                else if (chances[i] >= 36 && chances[i] <43) {
+                    cards.push(common[5])
+                }
+                else if (chances[i] >= 43 && chances[i] < 50) {
+                    cards.push(common[6])
+                }
+                else if (chances[i] >= 50 && chances[i] < 57) {
+                    cards.push(common[7])
+                }
+                else if (chances[i] >= 57 && chances[i] < 64) {
+                    cards.push(common[8])
+                }
+                else if (chances[i] >= 64 && chances[i] < 71) {
+                    cards.push(common[9])
+                }
+                else if (chances[i] >= 71 && chances[i] < 80) {
+                    cards.push(uncommon[0])
+                }
+                else if (chances[i] >= 80 && chances[i] < 89) {
+                    cards.push(uncommon[1])
+                }
+                else if (chances[i] >= 89 && chances[i] < 95) {
+                    cards.push("Dragonair")
+                }
+                else if (chances[i] >= 95 && chances[i] < 98) {
+                    cards.push("Zapdos")
+                }
+                else {
+                    cards.push("Eevee")
+                }
+             }
+            for (var i = 0; i < 6; i++) {
+            pokemon_list.innerHTML += `<li class="pokemon">${cards[i]}</li>`}
+            chances.length = 0
+            cards.length = 0
+        }
+    </script>
 </body>
 </html>
