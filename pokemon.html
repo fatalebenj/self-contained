@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon TCG</title>
+    <style>
+        body {
+            background-color: rgb(227, 222, 222);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #app {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 15px;
+            margin-top: 10%;
+            width: 1000px;
+            text-align: center;
+        }
+        #open-button {
+            height: 40px;
+            width: 80px;
+            font-size: 13pt;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            padding: 0 15px;
+            background-color: rgb(201, 60, 60);
+            color: white;
+        }
+        #footer {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 id="app-title">Pokemon Card Game</h1>
+        <div class="section" id="open-section">
+            <h2 class="section-title">You can open two packs now.</h2>
+            <button onclick="open_pack()" id="open-button">Open</button>
+        </div>
+        <div class="section" id="cards-section">
+            <h2 class="section-title">Your cards</h2>
+        </div>
+    </div>
+    <div id="footer">
+        <p>by benjamin constant, january 2026</p>
+    </div>
+</body>
+</html>
